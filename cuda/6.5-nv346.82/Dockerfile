@@ -1,4 +1,4 @@
-FROM walchl/nvidia-driver:346.59
+FROM walchl/nvidia-driver:346.82
 MAINTAINER "Walter Chen-Hua Lu"
 RUN apt-get -y install wget build-essential freeglut3-dev libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev &&\
     apt-get clean
