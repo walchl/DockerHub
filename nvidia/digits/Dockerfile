@@ -1,31 +1,30 @@
-FROM ubuntu:14.04
+FROM walchl/nvidia-driver:352.79
 MAINTAINER "Walter Chen-Hua Lu"
 
-ONBUILD \
 RUN apt-get update &&\
     apt-get -y install wget &&\
     apt-get clean 
 
-ONBUILD \
-RUN cd /tmp &&\
+RUN mkdir -p /tmp/downloads &&\
+    cd /tmp/downloads &&\
     CUDA_REPO_PKG=cuda-repo-ubuntu1404_7.5-18_amd64.deb &&\
     wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/$CUDA_REPO_PKG &&\
     dpkg -i $CUDA_REPO_PKG &&\
-    rm -f $ML_REPO_PKG
+    cd /tmp &&\
+    rm -rf downloads
 
-ONBUILD \
-RUN cd /tmp &&\
+RUN mkdir -p /tmp/downloads &&\
+    cd /tmp/downloads &&\
     ML_REPO_PKG=nvidia-machine-learning-repo_4.0-2_amd64.deb &&\
     wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1404/x86_64/$ML_REPO_PKG &&\
     dpkg -i $ML_REPO_PKG &&\
-    rm -f $ML_REPO_PKG
+    cd /tmp &&\
+    rm -rf downloads
 
-ONBUILD \
 RUN apt-get update &&\
     apt-get -y install digits &&\
     apt-get clean
 
-ONBUILD \
 RUN mkdir -p /mnt/data &&\
     mkdir -p /mnt/jobs &&\
     cd /usr/share/digits/digits &&\
