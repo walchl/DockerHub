@@ -1,4 +1,4 @@
-FROM walchl/nvidia-driver:352.79
+FROM walchl/nvidia-driver:352.93
 MAINTAINER "Walter Chen-Hua Lu"
 
 RUN apt-get update &&\
